@@ -11,7 +11,7 @@ img2=imutils.resize(img2,width=800)
 img=imutils.resize(img,width=800)
 cv2.imshow('gri',img)
 
-_, threshold = cv2.threshold(img, 110, 255, cv2.THRESH_BINARY) #Kabaca, piksel değerleri için belirli bir eşik (threshold) değeri altı 0 ve üstü 255 olacak Binary transformasyonu
+_, threshold = cv2.threshold(img, 110, 255, cv2.THRESH_BINARY) #Piksel değerleri için belirli bir eşik (threshold) değeri için alt 0 ve üst 255 olacak Binary transformasyonu
   
  
 contours, hi= cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE) #cv2 içinde bulunan Kontor bulmak için kullandığım fonksiyon. cv2.CHAIN_APPROX_NONE diyerek
@@ -22,8 +22,9 @@ for cnt in contours :
     approx = cv2.approxPolyDP(cnt, 0.009 * cv2.arcLength(cnt, True), True)      # numpy array'i cinsinden kontorların alınması
     alan=cv2.contourArea(cnt) #Kontor alanı
     
-    if alan > 600 and alan < 3000 :       # alan parametreleri, fotoğrafın çekildiği yüksekliğe göre değişiyor. (klasorden img2 için mesela 500-2000 arası 
-        cevre= cv2.arcLength(cnt,True)    # img5 için 1000-2500 arası uygun.) Aslında aynı yukseklikten cekilmiş olsa hepsi için aynı şey kullanılacak.
+    if alan > 600 and alan < 3000 :       # Alan parametreleri, fotoğrafın çekildiği yüksekliğe göre değişiyor. 
+                                          # Aynı yukseklikten cekilmiş olan fotograflar icin sabit degerler kullanilabilir.
+        cevre= cv2.arcLength(cnt,True)    
         print('Alan: ',alan, '  cevre: ',cevre)
         x,y,w,h = cv2.boundingRect(cnt)
         fark=int(w-h)

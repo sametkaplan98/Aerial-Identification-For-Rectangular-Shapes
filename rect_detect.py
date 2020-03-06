@@ -32,5 +32,5 @@ for cnt in contours :
          #cv2.drawContours(img, [approx], 0, (0, 0, 255), 5) #İşlenmiş resimden elde edilen kontorların en başta import ettiğimiz işlenmemiş renkli fotoğraf üzerine çizilmesi
          print('x:',x,' y:',y,' en:',w,' boy:',h)
          
-cv2.imshow('kontorlar', img2) #İşlenmiş resimden elde edilen kontorların en başta import ettiğimiz işlenmemiş renkli fotoğraf üzerine çizilmesi
+cv2.imshow('kontorlar', img2) #İşlenmiş resimden elde edilen kontorların en başta import ettiğimiz işlenmemiş renkli fotoğraf üzerinde gösterimi
 cv2.waitKey(0)
